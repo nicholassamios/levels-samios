@@ -1,0 +1,217 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="powerup.js"></script>
+    <script>
+    AFRAME.registerComponent('navigate-on-click', {
+      schema: {
+        url: {default: ''}
+      },
+
+      init: function () {
+        var data = this.data;
+        var el = this.el;
+
+        el.addEventListener('click', function () {
+          window.location.href = data.url;
+        });
+      }
+    });        
+  </script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script>
+  AFRAME.registerComponent('clock', {
+    schema: {
+      position: {type: 'vec3', default: {x: -.75, y: 1.75, z: -1.75}},
+      color: {type: 'color', default: '#0f0'},
+      font: {type: 'string', default: 'monoid'}
+    },
+    init: function () {
+      this.clockEl = document.createElement('a-text');
+      this.el.appendChild(this.clockEl);
+      this.clockEl.setAttribute('start', Date.now());
+      this.clockEl.setAttribute('position', this.data.position);
+      this.clockEl.setAttribute('color', this.data.color);
+      this.clockEl.setAttribute('font', this.data.font);
+    },
+    tick: function(){
+      millis = Date.now() - this.clockEl.getAttribute('start');
+      this.clockEl.setAttribute('value', 100 - Math.floor(millis/1000)); // change start time here
+    },
+    getTime: function() {
+            var d = new Date();
+            return d.toLocaleTimeString();
+    }  
+  });
+
+  // https://aframe.io/docs/0.5.0/primitives/#register-a-primitive  
+  AFRAME.registerPrimitive('a-clock', {
+  // Attaches the clock component by default
+  defaultComponents: {
+    clock: {}
+  },
+  // Maps HTML attributes to the component's properties
+  mappings: {
+    position: 'clock.position',
+    font: 'clock.font',
+    color: 'clock.color'
+  }
+  });
+  </script>
+  <script>
+      AFRAME.registerComponent('random-pos', {
+          init: function() {
+            // Set material component's color property to a random color.
+            this.el.setAttribute("position", getRandomPosition());
+          }
+      });
+
+      function getRandomPosition() {
+        posX = (Math.floor(Math.random() * 20) - 10).toString();
+        posY = (Math.floor(Math.random() * 10) + 1).toString();
+        posZ = (Math.floor(Math.random() * 7) + -22).toString();
+        pos = posX + " " + posY + " " + posZ;
+        return pos;
+      }
+    </script>
+    
+  </head>
+  <body>
+    <a-scene><!-- 20 random Spheres-->
+      <a-assets>
+        <audio id="hit" src="https://cdn.glitch.com/5dac991e-87ec-43ff-8017-642df662014f%2FSuper%20Punch%20MMA-SoundBible.com-1869306362.mp3?v=1583095641331" preload="auto"></audio>
+        <audio id="rewind" src="https://cdn.glitch.com/5dac991e-87ec-43ff-8017-642df662014f%2FRewind-sound-effect.mp3?v=1583096992005" preload="auto"></audio>
+      </a-assets>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      <a-sphere color="red" random-pos scale="0.5 0.5 0.5" visible="true"
+                event-set__enter="_event: mouseenter"
+                event-set__leave="_event: click; visible: false"
+                sound="src: #hit; on: click">
+      </a-sphere>
+      
+      <a-box color="green" position="0 1 -1.5" rotation="-90 0 0" scale="4 1 1"></a-box>
+      <a-box color="green" position="2.5 1 0" rotation="-90 90 0" scale="4 1 1"></a-box>
+      <a-box color="green" position="-2.5 1 0" rotation="-90 90 0" scale="4 1 1"></a-box>
+      <a-box color="green" position="0 1 1.5" rotation="-90 0 0" scale="4 1 1"></a-box>
+      <a-box position="0.5 2 1.5" scale="0.25 0.25 0.25" color="#FF6100" shadow
+             event-set__enter="_event: mouseenter; color: #D86A26"
+             event-set__leave="_event: mouseleave; color: #FF6100" sound="src: #rewind; on: click"
+             navigate-on-click="url: index.html">
+      </a-box>
+      <a-text value="Back to\nselection" color="white" position="0.495 2 1.346" rotation="0 180 0" align="center" scale="0.28 0.55 1"></a-text>
+      <a-box position="-0.5 2 1.5" scale="0.25 0.25 0.25" color="#FF0000" shadow
+             event-set__enter="_event: mouseenter; color: #B90202"
+             event-set__leave="_event: mouseleave; color: #FF0000" sound="src: #rewind; on: click"
+             navigate-on-click="url: world-2.html">
+      </a-box>
+      <a-text value="Reset\nTargets" color="white" position="-0.49 2 1.338" rotation="0 180 0" align="center" scale="0.3 0.49 1"></a-text>
+      <a-plane color="black" height="200" width="200" rotation="-90 0 0"></a-plane>
+      <a-sky color="#6EBAA7" opacity="0.75"></a-sky>
+      <a-clock font="sourcecodepro" color="#11f" position="-0.5 0.75 -0.5"></a-clock>
+      <a-camera position = "0 2 0">
+        <a-cursor color="green"></a-cursor>
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>
+        <!--<a-entity id="leftHand" hand-controls="left"></a-entity>
+        <a-entity laser-controls line="color: green; opacity: 0.75" hand="left"></a-entity>
+        <a-entity id="rightHand" hand-controls="right"></a-entity>
+        <a-entity laser-controls line="color: green; opacity: 0.75" hand="right"></a-entity>-->
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
