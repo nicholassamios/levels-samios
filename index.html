@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script>
+    AFRAME.registerComponent('navigate-on-click', {
+      schema: {
+        url: {default: ''}
+      },
+
+      init: function () {
+        var data = this.data;
+        var el = this.el;
+
+        el.addEventListener('click', function () {
+          window.location.href = data.url;
+        });
+      }
+    });        
+  </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow
+             event-set__enter="_event: mouseenter; color: #026fc9"
+             event-set__leave="_event: mouseleave; color: #4CC3D9" navigate-on-click="url: world-1.html">
+      </a-box>
+      <a-text value="World 1" color="#EF2D5E" position="-0.82 0.55 -2" rotation="0 45 0"></a-text>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow
+                event-set__enter="_event: mouseenter; color: #026fc9"
+                event-set__leave="_event: mouseleave; color: #EF2D5E" navigate-on-click="url: world-2.html">
+      </a-sphere>
+      <a-text value="World 2" color="#FFC65D" position="-0.491 1.3 -3.699" rotation="0 0 0"></a-text>
+      <a-torus-knot position="1 0.75 -3" radius="0.3" height="1" color="#FFC65D" shadow
+                  event-set__enter="_event: mouseenter; color: #026fc9"
+                  event-set__leave="_event: mouseleave; color: #FFC65D" navigate-on-click="url: world-3.html">
+      </a-torus-knot>
+      <a-text value="World 3" color="#4CC3D9" position="0.375 0.873 -2.425" rotation="0 0 0"></a-text>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+      <a-camera position = "0 1 0">
+        <a-cursor color="green"></a-cursor>
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>
+        <!--<a-entity id="leftHand" hand-controls="left"></a-entity>-->
+        <a-entity laser-controls="hand:left" line="color: green; opacity: 0.85"></a-entity>
+        <!--<a-entity id="rightHand" hand-controls="right"></a-entity>-->
+        <a-entity laser-controls="hand:right" line="color: green; opacity: 0.85"></a-entity>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
